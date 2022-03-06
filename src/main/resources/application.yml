@@ -1,0 +1,44 @@
+server:
+  port: 8087
+  servlet:
+    context-path: /bootVueDemo
+spring:
+  application:
+    name: bootVueDemo
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher #swagger必要配置
+    static-path-pattern: /file/**
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/test3?useUnicode=true&useSSL=false&characterEncoding=utf8&serverTimezone=Asia/Shanghai
+    username: root
+    password: root
+  web:
+    resources:
+      static-locations: classpath:/META-INF/resources/,classpath:/resources/,classpath:/static/,classpath:/public/,file:${web.upload-path}
+web:
+  upload-path: D:/home/bootVueDemoFile/
+mybatis-plus:
+  mapper-locations: classpath*:/mapper/**Mapper.xml
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  global-config:
+    db-config:
+      logic-delete-value: -1
+      logic-not-delete-value: 0
+#mybatis:
+#  mapper-locations: classpath:com/planet/module/authManage/mapper/xml/*.xml
+# shiro-redis??
+#shiro-redis:
+#  enabled: true
+#  redis-manager:
+#    host: 127.0.0.1:6379
+#    password: 123456
+logging:
+  #level ???? ???????????
+  level:
+    com.bootvuedemo: debug
+
+
+

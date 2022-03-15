@@ -76,7 +76,7 @@ public class AuthFilter implements Filter {
             authAndFunctionFailedRspBuild(response,RspResult.NOLOGIN);
             return;
         }
-
+        log.info("放行:"+url);
         chain.doFilter(request,response);
     }
 
@@ -86,7 +86,7 @@ public class AuthFilter implements Filter {
      * @return
      */
     private boolean whiteUrlListCheck(String url){
-        if(Pattern.matches(".*\\.(js|css|gif|jpg|ico|png)$", url)||
+        if(Pattern.matches(".*\\.(js|css|gif|jpg|ico|png|map|woff|ttf)$", url)||
                 Pattern.matches("^/swagger.*", url)||
                 Pattern.matches(".*\\.(woff2)$", url)||
                 "/csrf".equals(url)||"/".equals(url)||"/v2/api-docs".equals(url)||

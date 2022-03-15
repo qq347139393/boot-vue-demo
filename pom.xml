@@ -224,11 +224,27 @@
             <artifactId>swagger-annotations</artifactId>
             <version>1.6.2</version>
         </dependency>
+        <!-- easyExcel -->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>easyexcel</artifactId>
+            <version>3.0.5</version>
+        </dependency>
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <scope>test</scope>
         </dependency>
+
+        <dependency>
+            <groupId>com.planetProvide.easyExcelPlus</groupId>
+            <artifactId>easyExcelPlus</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/src/main/resources/lib/easyExcelPlus.jar</systemPath>
+        </dependency>
+
+
     </dependencies>
 
     <build>
@@ -236,6 +252,9 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <includeSystemScope>true</includeSystemScope>
+                </configuration>
                 <version>2.6.3</version>
             </plugin>
         </plugins>

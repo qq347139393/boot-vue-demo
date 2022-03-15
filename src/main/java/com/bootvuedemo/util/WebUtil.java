@@ -13,7 +13,7 @@ import javax.servlet.http.HttpSession;
  * @author xu_lw
  * @version 5.0.0
  * created  at 2020-06-19 18:55
- * copyright @2018 北京沐融信息科技股份有限公司
+ * copyright @2018
  */
 public class WebUtil {
 

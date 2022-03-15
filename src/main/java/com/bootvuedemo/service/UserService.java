@@ -1,7 +1,11 @@
 package com.bootvuedemo.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.bootvuedemo.common.util.RspResult;
 import com.bootvuedemo.entity.User;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.util.List;
 
 /**
  * <p>
@@ -13,4 +17,9 @@ import com.bootvuedemo.entity.User;
  */
 public interface UserService extends IService<User> {
 
+    RspResult excelImport(MultipartFile excelFile);
+
+    void excelExport(User user);
+
+    Integer inserts(List<User> list);
 }

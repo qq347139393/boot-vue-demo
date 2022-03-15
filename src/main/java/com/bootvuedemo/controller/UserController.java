@@ -10,6 +10,7 @@ import com.bootvuedemo.service.UserService;
 import com.bootvuedemo.util.mapAndEntityConvert.MapAndEntityConvertUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.Collection;
 import java.util.List;
@@ -34,11 +35,11 @@ public class UserController {
         if(list==null||list.size()==0){
             return RspResult.FAILED;
         }
-        if(userService.saveBatch(list)){
-            return RspResult.SUCCESS;
+        Integer inserts = userService.inserts(list);
+        if(inserts==null){
+            return RspResult.FAILED;
         }
-
-        return RspResult.FAILED;
+        return new RspResult(inserts);
     }
 
     @RequestMapping(value = "/",method = RequestMethod.DELETE)
@@ -117,6 +118,37 @@ public class UserController {
 
         IPage<User> pageData = userService.page(page, tQueryWrapper.orderByDesc("updatime"));
         return new RspResult(pageData);
+    }
+
+    /**
+     * excel导入记录
+     * @param excelFile
+     * @return
+     */
+    @RequestMapping(value = "/excelImport",method = RequestMethod.POST)
+    public RspResult excelImport(@RequestParam("excelFile") MultipartFile excelFile){
+        if(excelFile==null){
+            return RspResult.FAILED;
+        }
+        RspResult rspResult = userService.excelImport(excelFile);
+        if(rspResult==null){//发生了异常
+            return RspResult.FAILED;
+        }
+        return rspResult;
+    }
+
+    /**
+     * excel导出文件
+     //     * @param t
+     * @return
+     */
+    @RequestMapping(value = "/excelExport",method = RequestMethod.POST)
+    public void excelExport(@RequestBody User user){
+        if(user==null){
+            return;
+        }
+
+        userService.excelExport(user);
     }
 
 
